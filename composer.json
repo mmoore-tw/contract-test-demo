@@ -1,21 +1,22 @@
 {
-    "name": "mmoore-tw/contract-test-demo",
-    "description": "Demonstration of performing contract tests in PHP",
-    "authors": [
-        {
-            "name": "Matthew Moore",
-            "email": "mmoore@thoughtworks.com"
-        }
-    ],
-    "require": {
-        "mmoore-tw/pacto-php": "^0.1.6"
-    },
-     "require-dev": {
-    },
-"repositories": {
-        "mmoore-tw/pacto-php": {
-            "type": "vcs",
-            "url": "https://github.com/mmoore-tw/pacto-php"
-        }
+  "name": "mmoore-tw/contract-test-demo",
+  "description": "Demonstration of performing contract tests in PHP",
+  "authors": [
+    {
+      "name": "Matthew Moore",
+      "email": "mmoore@thoughtworks.com"
     }
+  ],
+  "require": {
+    "mmoore-tw/pacto-php": "^0.1.6"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "4.0.12"
+  },
+  "repositories": {
+    "mmoore-tw/pacto-php": {
+      "type": "vcs",
+      "url": "https://github.com/mmoore-tw/pacto-php"
+    }
+  }
 }

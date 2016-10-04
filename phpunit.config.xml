@@ -1,0 +1,15 @@
+<phpunit convertErrorsToExceptions="false"
+		 convertNoticesToExceptions="true"
+		 convertWarningsToExceptions="true"
+		 colors="false"
+		 verbose="true"
+		 bootstrap="bootstrap.php">
+	<testsuites>
+		<testsuite name="ContractTestConsumer">
+			<directory>consumer/test/</directory>
+		</testsuite>
+		<testsuite name="ContractTestProvider">
+			<directory>provider/test</directory>
+		</testsuite>
+	</testsuites>
+</phpunit>
