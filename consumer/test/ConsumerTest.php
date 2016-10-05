@@ -48,18 +48,18 @@ class ConsumerTest extends PHPUnit_Framework_TestCase
     {
 
         $request = array(
-                "headers" => array ("Accept" => "application/json"),
+                "headers" => array("Accept" => "application/json"),
                 "method" => "GET",
                 "path" => "/collaborators/23"
         );
 
         $expectedResponse = array(
                 "body" => array(
-                    "name" => "John",
-                    "role" => "Client Relantionship"
+                        "name" => "John",
+                        "role" => "Client Relantionship"
                 ),
-                "headers" => array (
-                    "Content-Type" => "application/json"
+                "headers" => array(
+                        "Content-Type" => "application/json"
                 ),
                 "status" => 200
         );
@@ -79,5 +79,94 @@ class ConsumerTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($expectedResponse['body'], $actualResponseBody);
     }
 
+    public function testCreateNewCollaboratorAsDeveloperRole()
+    {
+
+        $request = array(
+                "headers" => array("Accept" => "application/json"),
+                "method" => "POST",
+                "path" => "/collaborators"
+        );
+
+        $expectedResponse = array(
+                "body" => array(
+                        "username" => "daniele",
+                        "role" => "developer"
+                ),
+                "headers" => array("Content-Type" => "application/json"),
+                "status" => 200
+        );
+
+        // Arrange
+        $this->svc
+                ->Given("there is a role called developer and no developers named daniele")
+                ->UponReceiving("post new developer")
+                ->With($request)
+                ->WillRespond($expectedResponse);
+
+        // Act
+        $actualResponse = $this->svc->Start();
+
+        // Assert
+        $actualResponseBody = json_decode((string)$actualResponse->getBody(), true);
+        $this->assertEquals($expectedResponse['body'], $actualResponseBody);
+        $this->assertEquals($expectedResponse['status'], 200);
+    }
+
+    public function testGetUnknownCollaboratorReturnsNotFoundError()
+    {
+
+        $request = array(
+                "headers" => array("Accept" => "application/json"),
+                "method" => "GET",
+                "path" => "/collaborators/111"
+        );
+
+        $expectedResponse = array(
+                "headers" => array("Content-Type" => "application/json"),
+                "status" => 404
+        );
+
+        // Arrange
+        $this->svc
+                ->Given("there is not any collaborator with identifier 111")
+                ->UponReceiving("get collaborator")
+                ->With($request)
+                ->WillRespond($expectedResponse);
+
+        // Act
+        $this->svc->Start();
+
+        // Assert
+        $this->assertEquals($expectedResponse['status'], 404);
+    }
+
+    public function testDeleteCollaboratorByID()
+    {
+
+        $request = array(
+                "headers" => array("Accept" => "application/json"),
+                "method" => "DELETE",
+                "path" => "/collaborators/111"
+        );
+
+        $expectedResponse = array(
+                "headers" => array("Content-Type" => "application/json"),
+                "status" => 200
+        );
+
+        // Arrange
+        $this->svc
+                ->Given("there is a collaborator with identifier 111")
+                ->UponReceiving("delete collaborator")
+                ->With($request)
+                ->WillRespond($expectedResponse);
+
+        // Act
+        $this->svc->Start();
+
+        // Assert
+        $this->assertEquals($expectedResponse['status'], 200);
+    }
 }
 
