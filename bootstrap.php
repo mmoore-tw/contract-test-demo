@@ -1,13 +1,17 @@
 <?php
 
-define("JENKINS_USER", 'jenkins');
-define("JENKINS_PASSWORD", 'T55iwB4kJVrWDoUR41m4oYNvzJq7EpQ9');
-define("ARTIFACTORY_URL", 'https://box.artifactoryonline.com/box');
-define("ARTIFACTORY_PATH", 'box-maven-snapshots/net/box/infra/scala/contracts');
+//=================
+// CONSTANTS
+//=================
 
 define("CONTRACT_OUTPUT", "contracts");
 define("CONTRACT_INPUT", "contracts");
 
+
+//=================
+// IMPORTS
+//=================
+require_once __DIR__ . "/provider/src/CollaboratorsApiEndpoint.php";
 
 
 //function getContractManifest()
