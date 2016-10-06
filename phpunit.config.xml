@@ -3,6 +3,7 @@
 		 convertWarningsToExceptions="true"
 		 colors="false"
 		 verbose="true"
+		 backupGlobals="false"
 		 bootstrap="bootstrap.php">
 	<testsuites>
 		<testsuite name="ContractTestConsumer">

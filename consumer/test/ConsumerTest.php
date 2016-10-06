@@ -85,7 +85,8 @@ class ConsumerTest extends PHPUnit_Framework_TestCase
         $request = array(
                 "headers" => array("Accept" => "application/json"),
                 "method" => "POST",
-                "path" => "/collaborators"
+                "path" => "/collaborators",
+                "body" => array("username" => "daniele", "role" => "developer")
         );
 
         $expectedResponse = array(
@@ -124,7 +125,8 @@ class ConsumerTest extends PHPUnit_Framework_TestCase
 
         $expectedResponse = array(
                 "headers" => array("Content-Type" => "application/json"),
-                "status" => 404
+                "status" => 404,
+                "body" => array("error" => "Not Found")
         );
 
         // Arrange
@@ -152,7 +154,8 @@ class ConsumerTest extends PHPUnit_Framework_TestCase
 
         $expectedResponse = array(
                 "headers" => array("Content-Type" => "application/json"),
-                "status" => 200
+                "status" => 200,
+                "body" => array()
         );
 
         // Arrange
